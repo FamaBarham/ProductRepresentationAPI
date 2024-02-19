@@ -1,0 +1,45 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.5",
+        import: ["@key"])
+
+type Query {
+    products: [Product]
+}
+
+type Product @key(fields: "id") {
+    id: ID!,
+    name: String,
+    productCharacteristics: [Characteristic]
+}
+
+type Characteristic {
+    id: ID!,
+    name: String,
+    characteristicValue: [ValueType]
+}
+
+type NumberCharacteristic {
+    value: Int
+}
+
+type BooleanCharacteristic {
+    value: Boolean
+}
+
+type StringCharacteristic {
+    value: String
+}
+
+type NumberArrayCharacteristic {
+    value: [Int]
+}
+
+type BooleanArrayCharacteristic {
+    value: [Boolean]
+}
+
+type StringArrayCharacteristic {
+    value: [String]
+}
+
+union ValueType = NumberCharacteristic | BooleanCharacteristic | StringCharacteristic | StringArrayCharacteristic | BooleanArrayCharacteristic | NumberArrayCharacteristic
