@@ -1,0 +1,22 @@
+version: "8.0.36"
+
+services:
+  mysql:
+    container_name: ProductRepresentationDB
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: niassgoumba
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./home:/home
+    ports:
+      - "3308:3306"
+    networks:
+      my-network:
+        aliases:
+          - app1
+
+networks:
+  my-network:
+    name: my-network
